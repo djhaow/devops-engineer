@@ -22,3 +22,23 @@
 **Angka (baseline untuk dibandingkan nanti):**
 - Test suite: 7 test / 0.4 dtk.
 - [isi nanti W2 Day 5: ukuran image versi naif]
+
+## Day 2 — 16 Okt 2026 — Test yang layak jadi gerbang
+
+**Dibuat:**
+- Refactor: `src/app.ts` (createApp, store disuntik) dipisah dari `src/index.ts` (serve) — app bisa diuji tanpa port/jaringan.
+- Integration test via `app.request()`: happy path (create→redirect→stats), 404, JSON rusak, url hilang/salah tipe, URL invalid, ftp:// ditolak, healthz.
+- `test:ci` = coverage gate: `--experimental-test-coverage --test-coverage-lines=80`.
+
+**Angka:**
+- Suite: 13 test / 0.44 dtk (target < 10 dtk ✅).
+- Coverage: 90.57% lines, 96.30% branch, 100% funcs — gate 80% lolos.
+- Gerbang DIBUKTIKAN bisa merah: threshold 100 → `EXIT CODE = 1` ("90.57% does not meet threshold").
+
+**Keputusan:**
+- `fetch` dengan `redirect: "manual"` di test — kalau tidak, fetch mengikuti 301 otomatis dan test tidak bisa melihat header Location.
+- Coverage memory.ts 65% (baris 1-8: interface) = artefak type-stripping tsx, bukan kode mati — diketahui, tidak dikejar.
+
+**Pelajaran:**
+- Gerbang yang belum pernah terbukti gagal = belum terbukti apa-apa. Uji gerbangnya, bukan cuma jalannya.
+

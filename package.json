@@ -1,0 +1,33 @@
+{
+  "name": "shortlink-api",
+  "version": "0.1.0",
+  "description": "URL shortener — kendaraan belajar DevOps (CI/CD, Docker, Kubernetes)",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "tsx --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/djhaow/devops-engineer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/djhaow/devops-engineer/issues"
+  },
+  "homepage": "https://github.com/djhaow/devops-engineer#readme",
+  "dependencies": {
+    "@hono/node-server": "^2.1.5",
+    "hono": "^4.13.13"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}
